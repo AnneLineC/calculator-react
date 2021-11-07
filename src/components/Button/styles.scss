@@ -1,0 +1,27 @@
+@use '../../styles/vars';
+
+.button {
+  background-color: vars.$color--cream;
+  border-radius: vars.$radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 3px #212126;
+
+  &--long {
+    grid-column: span 2;
+  }
+
+  &--high {
+    grid-row: span 2;
+  }
+
+  &--cancel,
+  &--equal {
+    background-color: vars.$color--pink;
+  }
+
+  &--operator {
+    background-color: vars.$color--pink-dark;
+  }
+}

@@ -1,4 +1,17 @@
+@use '../../styles/vars';
+
 .app {
-  max-width: 50rem;
+  max-width: 40rem;
+  height: 55rem;
   margin: 2rem auto;
+  padding: 2 * vars.$gutter;
+  background-color: vars.$color--grey-dark;
+  box-shadow: 2px 2px 5px #0f0c16;
+  border-radius: vars.$radius;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+
+  gap: vars.$gutter;
 }

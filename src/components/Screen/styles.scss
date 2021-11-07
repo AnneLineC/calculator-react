@@ -1,0 +1,15 @@
+@use '../../styles/vars';
+
+.screen {
+  width: 100%;
+  background-color: vars.$color--deep-dark;
+  grid-column: 1 / -1;
+  margin-bottom: vars.$gutter;
+  border-radius: vars.$radius;
+  padding: vars.$gutter 2 * vars.$gutter;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.5em;
+  box-shadow: inset 0 0 3px #000000;
+}
