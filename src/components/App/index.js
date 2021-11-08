@@ -18,16 +18,44 @@ import './styles.scss';
 const App = () => {
   // State
   const [selectedValue, setSelectedValue] = useState('');
+  const [calculResult, setCalculResult] = useState('');
 
   // Fonctions
+  const calculate = () => {
+    const calcul = eval(selectedValue);
+    setCalculResult(`${calcul}`);
+    setSelectedValue('');
+  };
+
   const keyPressed = (value) => {
-    setSelectedValue(value);
+    setCalculResult('');
+
+    const reg = /[0-9]/;
+    if (reg.test(value) || value === '.') {
+      const newSelectedValue = selectedValue + value;
+      setSelectedValue(newSelectedValue);
+    }
+    else if (['*', '/', '-', '+'].includes(value)) {
+      const newSelectedValue = `${selectedValue} ${value} `;
+      setSelectedValue(newSelectedValue);
+      console.log('Ceci est un opérateur');
+    }
+    else if (value === '=') {
+      console.log('Calcul à faire !');
+      calculate();
+    }
+    else if (value === 'C') {
+      setSelectedValue('');
+    }
+    else {
+      console.log('Ceci n\'est pas connu !');
+    }
   };
 
   // Rendu
   return (
     <div className="app">
-      <Screen selectedValue={selectedValue} />
+      <Screen selectedValue={selectedValue} calculResult={calculResult} />
       <Button value="C" styleAdded="button--cancel" keyPressed={keyPressed} />
       <Button value="&#8592;" styleAdded="button--cancel" keyPressed={keyPressed} />
       <Button value="/" styleAdded="button--operator" keyPressed={keyPressed} />

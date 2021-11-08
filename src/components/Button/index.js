@@ -12,7 +12,7 @@ import './styles.scss';
 const App = ({ value, styleAdded, keyPressed }) => {
   function handleSubmit() {
     keyPressed(value);
-    console.log(`You clicked on ${value}`);
+    console.log(`Clic sur ${value}`);
   }
 
   return (
