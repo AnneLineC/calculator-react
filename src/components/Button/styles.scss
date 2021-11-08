@@ -2,6 +2,9 @@
 
 .button {
   background-color: vars.$color--cream;
+  border: 0;
+  color: inherit;
+  font-size: inherit;
   border-radius: vars.$radius;
   display: flex;
   justify-content: center;

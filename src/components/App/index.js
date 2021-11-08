@@ -2,6 +2,9 @@
 // IMPORTS
 // ------------------------
 
+// Modules
+import { useState } from 'react';
+
 // Composants
 import Screen from '../Screen';
 import Button from '../Button';
@@ -10,31 +13,42 @@ import Button from '../Button';
 import './styles.scss';
 
 // ------------------------
-// COMPOSANTS
+// COMPOSANT
 // ------------------------
-const App = () => (
-  <div className="app">
-    <Screen />
-    <Button value="C" styleAdded="button--cancel" />
-    <Button value="&#8592;" styleAdded="button--cancel" />
-    <Button value="/" styleAdded="button--operator" />
-    <Button value="*" styleAdded="button--operator" />
-    <Button value="1" />
-    <Button value="2" />
-    <Button value="3" />
-    <Button value="-" styleAdded="button--operator" />
-    <Button value="4" />
-    <Button value="5" />
-    <Button value="6" />
-    <Button value="+" styleAdded="button--operator" />
-    <Button value="7" />
-    <Button value="8" />
-    <Button value="9" />
-    <Button value="=" styleAdded="button--high button--equal" />
-    <Button value="0" styleAdded="button--long" />
-    <Button value="." />
-  </div>
-);
+const App = () => {
+  // State
+  const [selectedValue, setSelectedValue] = useState('');
+
+  // Fonctions
+  const keyPressed = (value) => {
+    setSelectedValue(value);
+  };
+
+  // Rendu
+  return (
+    <div className="app">
+      <Screen selectedValue={selectedValue} />
+      <Button value="C" styleAdded="button--cancel" keyPressed={keyPressed} />
+      <Button value="&#8592;" styleAdded="button--cancel" keyPressed={keyPressed} />
+      <Button value="/" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button value="*" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button value="1" keyPressed={keyPressed} />
+      <Button value="2" keyPressed={keyPressed} />
+      <Button value="3" keyPressed={keyPressed} />
+      <Button value="-" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button value="4" keyPressed={keyPressed} />
+      <Button value="5" keyPressed={keyPressed} />
+      <Button value="6" keyPressed={keyPressed} />
+      <Button value="+" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button value="7" keyPressed={keyPressed} />
+      <Button value="8" keyPressed={keyPressed} />
+      <Button value="9" keyPressed={keyPressed} />
+      <Button value="=" styleAdded="button--high button--equal" keyPressed={keyPressed} />
+      <Button value="0" keyPressed={keyPressed} styleAdded="button--long" />
+      <Button value="." keyPressed={keyPressed} />
+    </div>
+  );
+};
 
 // ------------------------
 // EXPORT

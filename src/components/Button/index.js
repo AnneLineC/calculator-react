@@ -2,16 +2,43 @@
 // IMPORTS
 // ------------------------
 
+import PropTypes from 'prop-types';
+
 import './styles.scss';
 
 // ------------------------
-// COMPONENT
+// COMPOSANT
 // ------------------------
-const App = ({ value, styleAdded }) => (
-  <div className={`button ${styleAdded}`}>
-    <p>{value}</p>
-  </div>
-);
+const App = ({ value, styleAdded, keyPressed }) => {
+  function handleSubmit() {
+    keyPressed(value);
+    console.log(`You clicked on ${value}`);
+  }
+
+  return (
+    <button
+      type="button"
+      className={`button ${styleAdded}`}
+      onClick={handleSubmit}
+    >
+      {value}
+    </button>
+  );
+};
+
+// ------------------------
+// VALIDATIONS
+// ------------------------
+
+App.defaultProps = {
+  styleAdded: '',
+};
+
+App.propTypes = {
+  value: PropTypes.string.isRequired,
+  styleAdded: PropTypes.string,
+  keyPressed: PropTypes.func.isRequired,
+};
 
 // ------------------------
 // EXPORT

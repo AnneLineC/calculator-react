@@ -2,9 +2,9 @@
 
 .screen {
   width: 100%;
+  height: 11rem;
   background-color: vars.$color--deep-dark;
   grid-column: 1 / -1;
-  margin-bottom: vars.$gutter;
   border-radius: vars.$radius;
   padding: vars.$gutter 2 * vars.$gutter;
   display: flex;

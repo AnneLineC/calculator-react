@@ -5,15 +5,15 @@
 import './styles.scss';
 
 // ------------------------
-// COMPONENT
+// COMPOSANT
 // ------------------------
-const App = () => (
+const Screen = ({ selectedValue }) => (
   <div className="screen">
-    <p>5</p>
+    <p>{selectedValue}</p>
   </div>
 );
 
 // ------------------------
 // EXPORT
 // ------------------------
-export default App;
+export default Screen;
