@@ -37,18 +37,23 @@ const App = () => {
       setSelectedValue(newSelectedValue);
     }
     else if (['*', '/', '-', '+'].includes(value)) {
-      const newSelectedValue = `${selectedValue} ${value} `;
-      setSelectedValue(newSelectedValue);
+      if (selectedValue !== '') {
+        const newSelectedValue = `${selectedValue} ${value} `;
+        setSelectedValue(newSelectedValue);
+      }
       console.log('Ceci est un opérateur');
     }
     else if (value === '=') {
-      console.log('Calcul à faire !');
       calculate();
     }
     else if (value === 'C') {
       setSelectedValue('');
     }
-    else {
+    else if (value === 'back') {
+      console.log('clic sur la flèche arrière');
+      const newSelectedValue = selectedValue.slice(0, -1);
+      setSelectedValue(newSelectedValue);
+    } else {
       console.log('Ceci n\'est pas connu !');
     }
   };
@@ -57,24 +62,24 @@ const App = () => {
   return (
     <div className="app">
       <Screen selectedValue={selectedValue} calculResult={calculResult} />
-      <Button value="C" styleAdded="button--cancel" keyPressed={keyPressed} />
-      <Button value="&#8592;" styleAdded="button--cancel" keyPressed={keyPressed} />
-      <Button value="/" styleAdded="button--operator" keyPressed={keyPressed} />
-      <Button value="*" styleAdded="button--operator" keyPressed={keyPressed} />
-      <Button value="1" keyPressed={keyPressed} />
-      <Button value="2" keyPressed={keyPressed} />
-      <Button value="3" keyPressed={keyPressed} />
-      <Button value="-" styleAdded="button--operator" keyPressed={keyPressed} />
-      <Button value="4" keyPressed={keyPressed} />
-      <Button value="5" keyPressed={keyPressed} />
-      <Button value="6" keyPressed={keyPressed} />
-      <Button value="+" styleAdded="button--operator" keyPressed={keyPressed} />
-      <Button value="7" keyPressed={keyPressed} />
-      <Button value="8" keyPressed={keyPressed} />
-      <Button value="9" keyPressed={keyPressed} />
-      <Button value="=" styleAdded="button--high button--equal" keyPressed={keyPressed} />
-      <Button value="0" keyPressed={keyPressed} styleAdded="button--long" />
-      <Button value="." keyPressed={keyPressed} />
+      <Button label="C" value="C" styleAdded="button--cancel" keyPressed={keyPressed} />
+      <Button label="&#8592;" value="back" styleAdded="button--cancel" keyPressed={keyPressed} />
+      <Button label="/" value="/" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button label="x" value="*" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button label="1" value="1" keyPressed={keyPressed} />
+      <Button label="2" value="2" keyPressed={keyPressed} />
+      <Button label="3" value="3" keyPressed={keyPressed} />
+      <Button label="-" value="-" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button label="4" value="4" keyPressed={keyPressed} />
+      <Button label="5" value="5" keyPressed={keyPressed} />
+      <Button label="6" value="6" keyPressed={keyPressed} />
+      <Button label="+" value="+" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button label="7" value="7" keyPressed={keyPressed} />
+      <Button label="8" value="8" keyPressed={keyPressed} />
+      <Button label="9" value="9" keyPressed={keyPressed} />
+      <Button label="=" value="=" styleAdded="button--high button--equal" keyPressed={keyPressed} />
+      <Button label="0" value="0" keyPressed={keyPressed} styleAdded="button--long" />
+      <Button label="." value="." keyPressed={keyPressed} />
     </div>
   );
 };

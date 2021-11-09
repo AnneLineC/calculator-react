@@ -9,7 +9,7 @@ import './styles.scss';
 // ------------------------
 // COMPOSANT
 // ------------------------
-const App = ({ value, styleAdded, keyPressed }) => {
+const App = ({ label, value, styleAdded, keyPressed }) => {
   function handleSubmit() {
     keyPressed(value);
     console.log(`Clic sur ${value}`);
@@ -21,7 +21,7 @@ const App = ({ value, styleAdded, keyPressed }) => {
       className={`button ${styleAdded}`}
       onClick={handleSubmit}
     >
-      {value}
+      {label}
     </button>
   );
 };
@@ -35,6 +35,7 @@ App.defaultProps = {
 };
 
 App.propTypes = {
+  label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   styleAdded: PropTypes.string,
   keyPressed: PropTypes.func.isRequired,
