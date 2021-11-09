@@ -24,7 +24,8 @@ const App = () => {
   const calculate = () => {
     const calcul = eval(selectedValue);
     const calculRounded = Math.round(calcul * 10000) / 10000;
-    setCalculResult(`${calculRounded}`);
+    const calculRoundedSpaced = calculRounded.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
+    setCalculResult(`${calculRoundedSpaced}`);
     setSelectedValue('');
   };
 
