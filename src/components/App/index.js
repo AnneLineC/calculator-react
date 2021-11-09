@@ -22,11 +22,13 @@ const App = () => {
 
   // Fonctions
   const calculate = () => {
-    const calcul = eval(selectedValue);
-    const calculRounded = Math.round(calcul * 10000) / 10000;
-    const calculRoundedSpaced = calculRounded.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
-    setCalculResult(`${calculRoundedSpaced}`);
-    setSelectedValue('');
+    if (selectedValue !== '') {
+      const calcul = eval(selectedValue);
+      const calculRounded = Math.round(calcul * 10000) / 10000;
+      const calculRoundedSpaced = calculRounded.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
+      setCalculResult(`${calculRoundedSpaced}`);
+      setSelectedValue('');
+    }
   };
 
   const keyPressed = (value) => {
