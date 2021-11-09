@@ -23,7 +23,8 @@ const App = () => {
   // Fonctions
   const calculate = () => {
     const calcul = eval(selectedValue);
-    setCalculResult(`${calcul}`);
+    const calculRounded = Math.round(calcul * 10000) / 10000;
+    setCalculResult(`${calculRounded}`);
     setSelectedValue('');
   };
 
