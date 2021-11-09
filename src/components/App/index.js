@@ -41,7 +41,10 @@ const App = () => {
         const newSelectedValue = `${selectedValue} ${value} `;
         setSelectedValue(newSelectedValue);
       }
-      console.log('Ceci est un opérateur');
+    }
+    else if (['(', ')'].includes(value)) {
+      const newSelectedValue = `${selectedValue} ${value} `;
+      setSelectedValue(newSelectedValue);
     }
     else if (value === '=') {
       calculate();
@@ -50,7 +53,6 @@ const App = () => {
       setSelectedValue('');
     }
     else if (value === 'back') {
-      console.log('clic sur la flèche arrière');
       const newSelectedValue = selectedValue.slice(0, -1);
       setSelectedValue(newSelectedValue);
     } else {
@@ -62,8 +64,10 @@ const App = () => {
   return (
     <div className="app">
       <Screen selectedValue={selectedValue} calculResult={calculResult} />
-      <Button label="C" value="C" styleAdded="button--cancel" keyPressed={keyPressed} />
-      <Button label="&#8592;" value="back" styleAdded="button--cancel" keyPressed={keyPressed} />
+      <Button label="C" value="C" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
+      <Button label="&#8592;" value="back" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
+      <Button label="(" value="(" styleAdded="button--operator" keyPressed={keyPressed} />
+      <Button label=")" value=")" styleAdded="button--operator" keyPressed={keyPressed} />
       <Button label="/" value="/" styleAdded="button--operator" keyPressed={keyPressed} />
       <Button label="x" value="*" styleAdded="button--operator" keyPressed={keyPressed} />
       <Button label="1" value="1" keyPressed={keyPressed} />
