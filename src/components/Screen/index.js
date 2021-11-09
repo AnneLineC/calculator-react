@@ -8,9 +8,9 @@ import './styles.scss';
 // ------------------------
 // COMPOSANT
 // ------------------------
-const Screen = ({ selectedValue, calculResult }) => (
+const Screen = ({ selectedValue }) => (
   <div className="screen">
-    <p>{selectedValue}{calculResult}</p>
+    <p>{selectedValue}</p>
   </div>
 );
 
@@ -21,7 +21,6 @@ Screen.defaultProps = {
 
 Screen.propTypes = {
   selectedValue: PropTypes.string,
-  calculResult: PropTypes.string,
 };
 
 // ------------------------

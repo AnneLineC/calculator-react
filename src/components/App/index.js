@@ -18,34 +18,36 @@ import './styles.scss';
 const App = () => {
   // State
   const [selectedValue, setSelectedValue] = useState('');
-  const [calculResult, setCalculResult] = useState('');
+  const [isCalculated, setIsCalculated] = useState(false);
 
   // Fonctions
   const calculate = () => {
     if (selectedValue !== '') {
       const calcul = eval(selectedValue);
       const calculRounded = Math.round(calcul * 10000) / 10000;
-      const calculRoundedSpaced = calculRounded.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
-      setCalculResult(`${calculRoundedSpaced}`);
-      setSelectedValue('');
+      // const calculRoundedSpaced = calculRounded.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
+      setSelectedValue(`${calculRounded}`);
+      setIsCalculated(true);
     }
   };
 
   const keyPressed = (value) => {
-    setCalculResult('');
-
     const reg = /[0-9]/;
     if (reg.test(value) || value === '.') {
       const newSelectedValue = selectedValue + value;
       setSelectedValue(newSelectedValue);
     }
-    else if (['*', '/', '-', '+'].includes(value)) {
-      if (selectedValue !== '') {
+    else if (['*', '/', '-', '+', ')'].includes(value)) {
+      if (isCalculated === true) {
+        const newSelectedValue = `${selectedValue} ${value} `;
+        setSelectedValue(newSelectedValue);
+      }
+      else if (selectedValue !== '') {
         const newSelectedValue = `${selectedValue} ${value} `;
         setSelectedValue(newSelectedValue);
       }
     }
-    else if (['(', ')'].includes(value)) {
+    else if (['('].includes(value)) {
       const newSelectedValue = `${selectedValue} ${value} `;
       setSelectedValue(newSelectedValue);
     }
@@ -56,8 +58,14 @@ const App = () => {
       setSelectedValue('');
     }
     else if (value === 'back') {
-      const newSelectedValue = selectedValue.slice(0, -1);
-      setSelectedValue(newSelectedValue);
+      if (selectedValue.slice(-1) === ' ') {
+        const newSelectedValue = selectedValue.slice(0, -3);
+        setSelectedValue(newSelectedValue);
+      }
+      else {
+        const newSelectedValue = selectedValue.slice(0, -1);
+        setSelectedValue(newSelectedValue);
+      }
     } else {
       console.log('Ceci n\'est pas connu !');
     }
@@ -66,7 +74,9 @@ const App = () => {
   // Rendu
   return (
     <div className="app">
-      <Screen selectedValue={selectedValue} calculResult={calculResult} />
+      <Screen 
+        selectedValue={selectedValue} 
+      />
       <Button label="C" value="C" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
       <Button label="&#8592;" value="back" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
       <Button label="(" value="(" styleAdded="button--operator" keyPressed={keyPressed} />
