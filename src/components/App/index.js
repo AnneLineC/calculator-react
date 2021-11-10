@@ -23,9 +23,15 @@ const App = () => {
   // Fonctions
   const calculate = () => {
     if (selectedValue !== '') {
-      const calcul = eval(selectedValue);
-      const calculRounded = Math.round(calcul * 10000) / 10000;
-      setSelectedValue(`${calculRounded}`);
+      let calcul = '';
+      try {
+        calcul = eval(selectedValue);
+        calcul = Math.round(calcul * 10000) / 10000;
+      }
+      catch (err) {
+        calcul = 'ERROR';
+      }
+      setSelectedValue(`${calcul}`);
       setIsCalculated(true);
     }
   };
@@ -41,7 +47,7 @@ const App = () => {
         const newSelectedValue = `${selectedValue} ${value} `;
         setSelectedValue(newSelectedValue);
       }
-      else if (selectedValue !== '' && selectedValue !== ' ( ') {
+      else if (selectedValue !== '') {
         const newSelectedValue = `${selectedValue} ${value} `;
         setSelectedValue(newSelectedValue);
       }
