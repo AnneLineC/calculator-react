@@ -25,7 +25,6 @@ const App = () => {
     if (selectedValue !== '') {
       const calcul = eval(selectedValue);
       const calculRounded = Math.round(calcul * 10000) / 10000;
-      // const calculRoundedSpaced = calculRounded.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
       setSelectedValue(`${calculRounded}`);
       setIsCalculated(true);
     }
@@ -42,7 +41,7 @@ const App = () => {
         const newSelectedValue = `${selectedValue} ${value} `;
         setSelectedValue(newSelectedValue);
       }
-      else if (selectedValue !== '') {
+      else if (selectedValue !== '' && selectedValue !== ' ( ') {
         const newSelectedValue = `${selectedValue} ${value} `;
         setSelectedValue(newSelectedValue);
       }
@@ -56,6 +55,7 @@ const App = () => {
     }
     else if (value === 'C') {
       setSelectedValue('');
+      setIsCalculated(false);
     }
     else if (value === 'back') {
       if (selectedValue.slice(-1) === ' ') {
@@ -65,8 +65,12 @@ const App = () => {
       else {
         const newSelectedValue = selectedValue.slice(0, -1);
         setSelectedValue(newSelectedValue);
+        if (newSelectedValue === '') {
+          setIsCalculated(false);
+        }
       }
-    } else {
+    }
+    else {
       console.log('Ceci n\'est pas connu !');
     }
   };
