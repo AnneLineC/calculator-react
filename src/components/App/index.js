@@ -42,17 +42,7 @@ const App = () => {
       const newSelectedValue = selectedValue + value;
       setSelectedValue(newSelectedValue);
     }
-    else if (['*', '/', '-', '+', ')'].includes(value)) {
-      if (isCalculated === true) {
-        const newSelectedValue = `${selectedValue} ${value} `;
-        setSelectedValue(newSelectedValue);
-      }
-      else if (selectedValue !== '') {
-        const newSelectedValue = `${selectedValue} ${value} `;
-        setSelectedValue(newSelectedValue);
-      }
-    }
-    else if (['('].includes(value)) {
+    else if (['*', '/', '-', '+', ')', '('].includes(value)) {
       const newSelectedValue = `${selectedValue} ${value} `;
       setSelectedValue(newSelectedValue);
     }
