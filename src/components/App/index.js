@@ -18,7 +18,6 @@ import './styles.scss';
 const App = () => {
   // State
   const [selectedValue, setSelectedValue] = useState('');
-  const [isCalculated, setIsCalculated] = useState(false);
 
   // Fonctions
   const calculate = () => {
@@ -32,7 +31,6 @@ const App = () => {
         calcul = 'ERROR';
       }
       setSelectedValue(`${calcul}`);
-      setIsCalculated(true);
     }
   };
 
@@ -51,7 +49,6 @@ const App = () => {
     }
     else if (value === 'C') {
       setSelectedValue('');
-      setIsCalculated(false);
     }
     else if (value === 'back') {
       if (selectedValue.slice(-1) === ' ') {
@@ -61,9 +58,6 @@ const App = () => {
       else {
         const newSelectedValue = selectedValue.slice(0, -1);
         setSelectedValue(newSelectedValue);
-        if (newSelectedValue === '') {
-          setIsCalculated(false);
-        }
       }
     }
     else {
@@ -74,8 +68,8 @@ const App = () => {
   // Rendu
   return (
     <div className="app">
-      <Screen 
-        selectedValue={selectedValue} 
+      <Screen
+        selectedValue={selectedValue}
       />
       <Button label="C" value="C" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
       <Button label="&#8592;" value="back" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
