@@ -10,6 +10,11 @@
   justify-content: center;
   align-items: center;
   box-shadow: 1px 1px 3px #212126;
+  
+  &:active {
+    box-shadow: none;
+    transform: translateY(1px) translateX(1px);
+  }
 
   &--long {
     grid-column: span 2;
