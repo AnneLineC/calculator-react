@@ -8,19 +8,25 @@ import './styles.scss';
 // ------------------------
 // COMPOSANT
 // ------------------------
-const Screen = ({ selectedValue }) => (
-  <div className="screen">
-    <p>{selectedValue}</p>
-  </div>
-);
+const Screen = ({ calcul, isError }) => {
+  let screenContent = calcul;
+  if (isError) {
+    screenContent = 'ERROR';
+  }
+  return (
+    <div className="screen">
+      <p>{screenContent}</p>
+    </div>
+  );
+};
 
 Screen.defaultProps = {
-  selectedValue: '',
-  calculResult: 0,
+  calcul: '',
 };
 
 Screen.propTypes = {
-  selectedValue: PropTypes.string,
+  calcul: PropTypes.string,
+  isError: PropTypes.bool.isRequired,
 };
 
 // ------------------------

@@ -17,51 +17,56 @@ import './styles.scss';
 // ------------------------
 const App = () => {
   // State
-  const [selectedValue, setSelectedValue] = useState('');
+  const [calcul, setCalcul] = useState('');
+  const [isError, setIsError] = useState(false);
 
   // Fonctions
   const calculate = () => {
-    if (selectedValue !== '') {
-      let calcul = '';
+    if (calcul !== '') {
       try {
-        calcul = eval(selectedValue);
-        calcul = Math.round(calcul * 10000) / 10000;
+        let currentCalcul = eval(calcul);
+        currentCalcul = Math.round(currentCalcul * 10000) / 10000;
+        setCalcul(`${currentCalcul}`);
       }
       catch (err) {
-        calcul = 'ERROR';
+        setIsError(true);
+        setCalcul('');
       }
-      setSelectedValue(`${calcul}`);
     }
   };
 
   const keyPressed = (value) => {
+    console.log(calcul);
+    setIsError(false);
+
     const reg = /[0-9]/;
     if (reg.test(value) || value === '.') {
-      const newSelectedValue = selectedValue + value;
-      setSelectedValue(newSelectedValue);
+      const newcalcul = calcul + value;
+      setCalcul(newcalcul);
     }
     else if (['*', '/', '-', '+', ')', '('].includes(value)) {
-      const newSelectedValue = `${selectedValue} ${value} `;
-      setSelectedValue(newSelectedValue);
+      const newcalcul = `${calcul} ${value} `;
+      setCalcul(newcalcul);
     }
     else if (value === '=') {
       calculate();
     }
     else if (value === 'C') {
-      setSelectedValue('');
+      setCalcul('');
     }
     else if (value === 'back') {
-      if (selectedValue.slice(-1) === ' ') {
-        const newSelectedValue = selectedValue.slice(0, -3);
-        setSelectedValue(newSelectedValue);
+      if (calcul.slice(-1) === ' ') {
+        const newcalcul = calcul.slice(0, -3);
+        setCalcul(newcalcul);
       }
       else {
-        const newSelectedValue = selectedValue.slice(0, -1);
-        setSelectedValue(newSelectedValue);
+        const newcalcul = calcul.slice(0, -1);
+        setCalcul(newcalcul);
       }
     }
     else {
       console.log('Ceci n\'est pas connu !');
+      setIsError(true);
     }
   };
 
@@ -69,7 +74,8 @@ const App = () => {
   return (
     <div className="app">
       <Screen
-        selectedValue={selectedValue}
+        calcul={calcul}
+        isError={isError}
       />
       <Button label="C" value="C" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
       <Button label="&#8592;" value="back" styleAdded="button--cancel button--long" keyPressed={keyPressed} />
