@@ -17,7 +17,7 @@ module.exports = {
   ],
   output: {
     path: paths.build,
-    publicPath: '/calculator/',
+    publicPath: '/docs/',
     filename: 'js/[name].[contenthash].js',
   },
   resolve: {
